@@ -1,0 +1,107 @@
+html {
+  scroll-padding-top: 6rem;
+  scroll-behavior: smooth;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.bg-login {
+  background-color: #D5E5F2;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.85;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.bg-login .logo-login {
+  width: 80px;
+}
+
+.bg-login .login-box {
+  position: relative;
+}
+
+.bg-login .login-logo {
+  margin-bottom: 35px !important;
+}
+
+.bg-login .text-pachaew {
+  font-family: 'Kanit', sans-serif;
+}
+
+.bg-login .padding-card-login {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+          box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 20px 5px;
+  border-radius: 2%;
+  height: 500px;
+  width: 100%;
+  position: relative;
+}
+
+.bg-login .form-login {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+  padding-top: 80px;
+}
+
+.bg-login .btn-login {
+  width: 60%;
+  padding: 10px;
+  border-radius: 15px;
+  background-color: #04B2D9;
+  border: 0;
+  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.bg-login .header-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  position: absolute;
+  top: -28px;
+  left: 0;
+  right: 0;
+}
+
+.bg-login .header-box p {
+  background-color: #04B2D9;
+  color: #fff;
+  padding: 15px 55px;
+  border-radius: 15px;
+  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.bg_index {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+  min-height: 100vh;
+}
+/*# sourceMappingURL=library.css.map */
