@@ -1,3 +1,4 @@
+
 <?php
 require_once("config.php");
 class db extends Config
@@ -73,16 +74,57 @@ class db extends Config
   }
 
 
-  public function  insert($table, array $columns, array $values)
+  public function select_joinSearch(array $column,  $table_left,  $table_right, $condition,  array $where, array $keyword)
   {
-    $sql_values = '';
-    $count = count($columns) - 1;
-    for ($i = 0; $i < $count; $i++) {
-      if ($i == $count) {
-        $sql_values .= ' ?';
+    $sql =  "SELECT " . implode(",", $column) . "  FROM " . $table_left . " INNER JOIN " . $table_right . " ON " . $condition . " WHERE " . implode(" LIKE ? OR ", $where) . "  LIKE ?";
+    $select = $this->conn->prepare($sql);
+    $select->execute($keyword);
+    $result = $select->fetchAll();
+    return $result;
+  }
+
+  public function select_joinSeachNew(array $column,  $table_left,  $table_right, $condition,  $where)
+  {
+    $sql =  "SELECT " . implode(",", $column) . "  FROM " . $table_left . " INNER JOIN " . $table_right . " ON " . $condition . " WHERE " . $where;
+    $select = $this->conn->prepare($sql);
+    $select->execute();
+    $result = $select->fetchAll();
+    return $result;
+  }
+
+
+
+
+  public function select_join(array $column,  $table_left,  $table_right, $condition)
+  {
+    $sql =  "SELECT " . implode(",", $column) . " FROM " . $table_left .   " INNER JOIN " . $table_right . " ON " . $condition . "";
+    $select = $this->conn->prepare($sql);
+    $select->execute();
+    $result = $select->fetchAll();
+    return $result;
+  }
+
+
+  public function select_join_where(array $column,  $table_right,  $tale_left, $condition,  array $where, array $values)
+  {
+    $sql =  "SELECT " . implode(",", $column) . "  FROM " . $tale_left . " INNER JOIN " . $table_right . " ON " . $condition . " WHERE " . implode(" = ? AND ", $where) . " = ?";
+    $select = $this->conn->prepare($sql);
+    $select->execute($values);
+    $result = $select->fetch();
+    return $result;
+  }
+
+
+  public function insert($table, array $columns, array $values)
+  {
+    $sql_values = "";
+    $check_count =   count($columns) - 1;
+    for ($i = 0; $i < count($columns); $i++) {
+      if ($check_count == $i) {
+        $sql_values .= "?";
         continue;
       }
-      $sql_values .= '?, ';
+      $sql_values .= "?, ";
     }
     $sql = "INSERT INTO " . $table .  "(" . implode(",", $columns) . ")" . " VALUE (" . $sql_values  . ")";
     $insert = $this->conn->prepare($sql);

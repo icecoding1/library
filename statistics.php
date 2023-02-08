@@ -3,6 +3,16 @@ session_start();
 require_once("backend/function.php");
 $conn  = new db;
 isset($_SESSION['name_admin']) && isset($_SESSION['username_admin']) ? '' : header("location:login.php");
+$result_all_book = $conn->fetchAll("tb_book", ['*']);
+$count_result_all_book = count($result_all_book);
+
+$result_br_book = $conn->fetchAll("tb_borrow_book", ['*']);
+$count_result_be_book = count($result_br_book);
+
+$result_all_member = $conn->fetchAll("tb_member", ['*']);
+$count_result_all_member = count($result_all_member);
+
+$count_overdue = $conn->select_where("tb_borrow_book", ['status'], [0])
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +35,7 @@ isset($_SESSION['name_admin']) && isset($_SESSION['username_admin']) ? '' : head
       <div class="p-5">
         <p>หนังสือทั้งหมด(เล่ม)</p>
         <div class="bg-success p-4 text-center border-secondary shadow ">
-          <h1 class="fw-bold">5</h1>
+          <h1 class="fw-bold"><?= $count_result_all_book ?></h1>
         </div>
       </div>
 
@@ -33,7 +43,7 @@ isset($_SESSION['name_admin']) && isset($_SESSION['username_admin']) ? '' : head
       <div class="p-5">
         <p>การใช้บริการยืมคืน(ครั้ง)</p>
         <div class="bg-info p-4 text-center border-secondary shadow ">
-          <h1 class="fw-bold">5</h1>
+          <h1 class="fw-bold"><?= $count_result_be_book ?></h1>
         </div>
       </div>
     </div>
@@ -44,15 +54,15 @@ isset($_SESSION['name_admin']) && isset($_SESSION['username_admin']) ? '' : head
       <div class="p-5">
         <p>สมาชิกทั้งหมด(คน)</p>
         <div class="bg-warning p-4 text-center border-secondary shadow ">
-          <h1 class="fw-bold">5</h1>
+          <h1 class="fw-bold"><?= $count_result_all_member ?></h1>
         </div>
       </div>
 
 
       <div class="p-5">
-        <p>หนังสทอค้างส่ง(เล่ม)</p>
+        <p>หนังสือค้างส่ง(เล่ม)</p>
         <div class="bg-danger p-4 text-center border-secondary shadow ">
-          <h1 class="fw-bold">5</h1>
+          <h1 class="fw-bold"><?= $count_overdue ?></h1>
         </div>
       </div>
     </div>
