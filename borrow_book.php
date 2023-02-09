@@ -105,12 +105,12 @@ $result_book = $conn->fetchAll("tb_book", ['*']);
         method: "POST",
         body: formData
       })
-      const res = await data.text();
-      if (res == "ไม่พบข้อมูลสมาชิก") {
+      const res = await data.json();
+      if (res.echo_res === "ไม่พบข้อมูลสมาชิกที่ต้องการ") {
         Swal.fire({
           position: 'center',
           icon: 'error',
-          title: res,
+          title: res.echo_res,
           showConfirmButton: false,
           timer: 1500
         })
@@ -118,8 +118,8 @@ $result_book = $conn->fetchAll("tb_book", ['*']);
         //   location.assign("borrow_book.php");
         // }, 1000)
       } else {
-        detail_name.innerText = res;
-        name_user_input.value = res;
+        detail_name.innerText = res.echo_res;
+        name_user_input.value = res.echo_res;
       }
     })
 
@@ -161,12 +161,12 @@ $result_book = $conn->fetchAll("tb_book", ['*']);
         method: "POST",
         body: formData
       })
-      const res = await data.text();
-      if (res == "เพิ่มข้อมูลสำเร็จ") {
+      const res = await data.json();
+      if (res.echo_res == "เพิ่มข้อมูลสำเร็จ") {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: res,
+          title: res.echo_res,
           showConfirmButton: false,
           timer: 1500
         })
@@ -177,7 +177,7 @@ $result_book = $conn->fetchAll("tb_book", ['*']);
         Swal.fire({
           position: 'center',
           icon: 'error',
-          title: res,
+          title: res.echo_res,
           showConfirmButton: false,
           timer: 1500
         })

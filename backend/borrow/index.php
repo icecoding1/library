@@ -16,10 +16,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       // $count = count($result);
       if ($count_result < 1) {
         http_response_code(400);
-        echo "ไม่พบข้อมูลสมาชิก";
+
+        $responce =  ["echo_res" => "ไม่พบข้อมูลสมาชิกที่ต้องการ"];
+        echo json_encode($responce);
       } else if ($count_result >= 1) {
         http_response_code(200);
-        echo $result['m_name'];
+        $responce =  ["echo_res" => $result['m_name']];
+        echo json_encode($responce);
       }
     } catch (Exception $e) {
       http_response_code(500);
@@ -67,10 +70,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $result = $conn->insert("tb_borrow_book", ["b_code", "m_user"], [$code_book, $name_user]);
       if ($result) {
         http_response_code(200);
-        echo "เพิ่มข้อมูลสำเร็จ";
+        $responce =  ["echo_res" => "เพิ่มข้อมูลสำเร็จ"];
+        echo json_encode($responce);
       } else {
         http_response_code(400);
-        echo "เพิ่มข้อมูลไม่สำเร็จ";
+        $responce =  ["echo_res" => "เพิ่มข้อมูลไม่สำเร็จ"];
+        echo json_encode($responce);
         exit;
       }
     } catch (Exception $e) {
@@ -89,10 +94,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $result = $conn->update("tb_borrow_book", ["status", "br_fine"], [1, $fine], $id);
       if ($result) {
         http_response_code(200);
-        echo "คืนหนังสือสำเร็จ";
+        $responce =  ["echo_res" => "คืนหนังสือสำเร็จ"];
+        echo json_encode($responce);
       } else {
         http_response_code(400);
-        echo "คืนหนังสือไม่สำเร็จ";
+        $responce =  ["echo_res" => "คืนหนังสือไม่สำเร็จ"];
+        echo json_encode($responce);
         exit;
       }
     } catch (Exception $e) {

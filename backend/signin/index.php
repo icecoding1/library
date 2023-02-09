@@ -18,13 +18,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       // $count = count($result);
       if ($count_result < 1) {
         http_response_code(400);
-        echo "ไม่มีชื่อผู้ใช้บัญชีนี้";
+        $responce =  ["echo_res" => "ไม่มีชื่อผู้ใช้บัญชีนี้"];
+        echo json_encode($responce);
       } else if ($count_result >= 1) {
         http_response_code(200);
         $_SESSION['id_admin'] = $result['id'];
         $_SESSION['name_admin'] = $result['f_name'];
         $_SESSION['username_admin'] = $result['f_user'];
-        echo "กำลังเข้าสู่ระบบ";
+        $responce =  ["echo_res" => "กำลังเข้าสู่ระบบ"];
+        echo json_encode($responce);
       }
       // echo json_encode($result);
     } catch (Exception $e) {

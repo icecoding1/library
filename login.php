@@ -72,14 +72,14 @@ isset($_SESSION['name_admin']) && isset($_SESSION['username_admin']) ? header("l
         method: "POST",
         body: formData
       })
-      const res = await data.text();
-      if (res == "กำลังเข้าสู่ระบบ") {
+      const res = await data.json();
+      if (res.echo_res == "กำลังเข้าสู่ระบบ") {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: res,
+          title: res.echo_res,
           showConfirmButton: false,
-          // timer: 1500
+          timer: 1500
         })
         setInterval(() => {
           location.assign("index.php");
@@ -88,7 +88,7 @@ isset($_SESSION['name_admin']) && isset($_SESSION['username_admin']) ? header("l
         Swal.fire({
           position: 'center',
           icon: 'error',
-          title: res,
+          title: res.echo_res,
           showConfirmButton: false,
           // timer: 1500
         })

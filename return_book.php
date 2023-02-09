@@ -92,12 +92,12 @@ $result_detail = $conn->select_join_where(["tb_book.b_name", "tb_borrow_book.*"]
         method: "POST",
         body: formData
       })
-      const res = await data.text();
-      if (res == "คืนหนังสือสำเร็จ") {
+      const res = await data.json();
+      if (res.echo_res == "คืนหนังสือสำเร็จ") {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: res,
+          title: res.echo_res,
           showConfirmButton: false,
           timer: 1500
         })
@@ -108,7 +108,7 @@ $result_detail = $conn->select_join_where(["tb_book.b_name", "tb_borrow_book.*"]
         Swal.fire({
           position: 'center',
           icon: 'error',
-          title: res,
+          title: res.echo_res,
           showConfirmButton: false,
           timer: 1500
         })
